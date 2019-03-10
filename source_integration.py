@@ -57,7 +57,7 @@ sim = pyrodeo.Simulation.from_geom('cyl', dimensions=[128, 384, 1],
 # Sound speed constant H/r = 0.05
 # pp 1205, http://dx.doi.org/10.1051/0004-6361:20053761
 sim.state.soundspeed = 0.05*sim.state.soundspeed/np.sqrt(sim.coords.x)
-v_drift = 0.5*sim.state.soundspeed  # define Drift Velocity
+v_drift = 0.2*sim.state.soundspeed  # define Drift Velocity
 sim.state.dens = 1.0/sim.coords.x  # define density
 
 sim.state.velx = v_drift
@@ -67,5 +67,5 @@ sim.param.boundaries[1] = ['nonreflecting','nonreflecting']
 # Simulate a Jupiter planet up to 100 orbits
 
 sim.evolve(2.0*np.pi*np.array([100]),
-                    planet_source, (0.001, 0.6*0.05, v_drift), new_file=True)
-#50%---100 orbits
+                    planet_source, (0, 0.6*0.05, v_drift), new_file=True)
+#20%---100 orbits--no planet
