@@ -19,21 +19,22 @@ def file_opener(filenames):
         # Simulation time at checkpoint
         t = g.attrs['time']
         return (x, dens, t, last_checkpoint)
-fig = plt.figure(figsize=[10.4, 7.8])
-x1, dens1, t1, last_checkpoint1 = file_opener('./rodeo_v20_o100.h5')
+# fig = plt.figure(figsize=[10.4, 7.8])
+fig = plt.figure(figsize=[8,6])
+x1, dens1, t1, last_checkpoint1 = file_opener('./o100_30prcnt.h5')
 print('Plotting ' + last_checkpoint1 + ' at t = {}'.format(t1))
-plt.plot(x1[33:45, 0], np.mean(dens1[33:45,:], axis=1), 'r', label ='After 100 orbits')
+plt.plot(x1[33:45, 0], np.mean(dens1[33:45,:], axis=1), 'k-', label ='After 100 orbits')
 # print(x1[25:45,0])
 # print(dens1[25:45,:].shape)
 
-x2, dens2, t2, last_checkpoint2 = file_opener('./rodeo_v20_o200.h5')
+x2, dens2, t2, last_checkpoint2 = file_opener('./o200_30prcnt.h5')
 print('Plotting ' + last_checkpoint2 + ' at t = {}'.format(t2))
-plt.plot(x2[33:45, 0], np.mean(dens2[33:45,:], axis=1), 'b', label ='After 200 orbits')
+plt.plot(x2[33:45, 0], np.mean(dens2[33:45,:], axis=1), 'k:', label ='After 200 orbits')
 
-plt.xlabel('Radial Distance r')
-plt.ylabel('Vertically Averaged Surface Density')
-plt.title('Simulation for 100 orbits with planet at $r_p=1$ and migration at 20% soundspeed')
-plt.legend()
-# plt.savefig('./Graphs/Results/steady_state.png')
+plt.xlabel('Radial Distance r',fontsize=14)
+plt.ylabel('Vertically Averaged Surface Density',fontsize=14)
+plt.title('Jupiter-mass planet at $r_p = 1$: \n Migration speed = 30% of sound-speed',fontsize=16)
+plt.legend(prop={'size': 14})
+plt.savefig('./Results/steady_state.png')
 plt.show()
 
